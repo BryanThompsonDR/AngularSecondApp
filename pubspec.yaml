@@ -1,5 +1,5 @@
-name: angular_app
-description: A web app that uses AngularDart
+name: AngularSecondApp
+description: Tour of heroes
 version: 0.0.1
 
 environment:
@@ -7,6 +7,8 @@ environment:
 
 dependencies:
   angular: ^7.0.2
+  angular_forms: ^4.0.1
+  angular_router:
 
 # #docregion dev_dependencies, build-dependencies
 dev_dependencies:
