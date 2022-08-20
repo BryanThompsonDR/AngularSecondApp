@@ -9,6 +9,7 @@ import 'route_paths.dart';
 @Component(
   selector: 'my-hero',
   templateUrl: 'hero_component.html',
+  styleUrls: ['hero_component.css'],
   directives: [coreDirectives, formDirectives],
 )
 
@@ -19,7 +20,7 @@ class HeroComponent implements OnActivate{
 
   HeroComponent(this._heroService, this._location);
 
-  Hero? hero;
+  Hero hero = Hero.blankHero();
 
   @override
   void onActivate(_, RouterState current) async {
@@ -28,4 +29,9 @@ class HeroComponent implements OnActivate{
   }
 
   void goBack() => _location.back();
+
+    Future<void> save() async {
+    await _heroService.update(hero);
+    goBack();
+  }
 }

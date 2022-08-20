@@ -5,6 +5,7 @@ import 'package:angular_forms/angular_forms.dart';
 import 'hero.dart';
 import 'hero_service.dart';
 import 'route_paths.dart';
+import 'dart:html';
 
 @Component(
   selector: 'my-heroes',
@@ -20,7 +21,7 @@ class HeroListComponent implements OnInit {
   final Router _router;
   List<Hero>? heroes;
 
-  Hero selected = blankHero();
+  Hero selected = Hero.blankHero();
 
   void onSelect(Hero hero) => selected = hero;
 
@@ -37,7 +38,21 @@ class HeroListComponent implements OnInit {
 
   Future<NavigationResult> gotoDetail() => _router.navigate(_heroUrl(selected.id));
 
-  static Hero blankHero(){
-    return Hero(0,'');
+  Future<void> add(String? name) async {
+    name = name!.trim();
+    if (name.isEmpty) 
+      return;
+    heroes!.add(await _heroService.create(name));
+    selected = Hero.blankHero();
+    name = '';
+  }
+
+  Future<void> delete(Hero hero, Event event) async {
+    await _heroService.delete(hero.id);
+    heroes!.remove(hero);
+    if (selected == hero)
+      selected = Hero.blankHero();
+    // This makes any component **above** <my-hero>
+    event.stopPropagation();
   }
 }

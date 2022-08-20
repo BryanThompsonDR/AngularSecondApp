@@ -8,7 +8,10 @@ environment:
 dependencies:
   angular: ^7.0.2
   angular_forms: ^4.0.1
+  http: ^0.13.5
+  stream_transform: ^2.0.0
   angular_router:
+ 
 
 # #docregion dev_dependencies, build-dependencies
 dev_dependencies:

@@ -22,6 +22,7 @@ import 'src/routes.dart';
   </nav>
   <router-outlet [routes]="Routes.all"></router-outlet>
   ''',
+  styleUrls: ['app_component.css'],
   directives: [routerDirectives],
   providers: [ClassProvider(HeroService)],
   exports: [RoutePaths, Routes],
@@ -30,4 +31,5 @@ import 'src/routes.dart';
 class AppComponent
 {
     final title = 'Tour of Heroes';
+    var name = "World";
 }
